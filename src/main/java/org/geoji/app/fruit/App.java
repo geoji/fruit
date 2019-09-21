@@ -1,12 +1,5 @@
 package org.geoji.app.fruit;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -37,8 +30,6 @@ public class App
         // IMPORTANT:
         // This is a raw Servlet, not a Servlet that has been configured
         // through a web.xml @WebServlet annotation, or anything similar.
-//        handler.addServletWithMapping(HelloServlet.class, "/*");
-        
         HelloServlet helloServlet = new HelloServlet();
         handler.addServletWithMapping(new ServletHolder(helloServlet), "/*");
         
@@ -50,19 +41,5 @@ public class App
         // See
         // http://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html#join()
         server.join();
-    }
-
-    @SuppressWarnings("serial")
-    public static class HelloServlet extends HttpServlet
-    {
-        @Override
-        protected void doGet(HttpServletRequest request,
-                             HttpServletResponse response) throws ServletException,
-            IOException
-        {
-            response.setContentType("text/html");
-            response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().println("<h1>Hello from HelloServlet</h1>");
-        }
     }
 }
